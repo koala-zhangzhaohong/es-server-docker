@@ -2,7 +2,7 @@ version: '3'
 # replace 192.168.1.1 to real server ip
 services:
   elasticsearch:
-    image: docker.nju.edu.cn/library/elasticsearch:8.8.1
+    image: elasticsearch:9.3.3
     container_name: elasticsearch-server
     restart: always
     ports:
@@ -31,7 +31,7 @@ services:
           memory: 14G
           cpus: "8.00"
   logstash-api-analytics:
-    image: docker.nju.edu.cn/library/logstash:8.8.1
+    image: logstash:9.3.3
     container_name: logstash-api-analytics-cluster-server
     restart: always
     environment:
@@ -45,6 +45,7 @@ services:
       - /www/docker/logstash-api-analytics/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - /www/docker/logstash-api-analytics/conf.d:/usr/share/logstash/config.d
       - /www/docker/logstash-api-analytics/csv:/usr/share/logstash/csv
+      - /www/docker/logstash-api-analytics/data:/usr/share/logstash/data
     links:
       - elasticsearch
     depends_on:
@@ -55,7 +56,7 @@ services:
           memory: 14G
           cpus: "8.00"
   logstash-event-tracker:
-    image: docker.nju.edu.cn/library/logstash:8.8.1
+    image: logstash:9.3.3
     container_name: logstash-event-tracker-cluster-server
     restart: always
     environment:
@@ -69,6 +70,7 @@ services:
       - /www/docker/logstash-event-tracker/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - /www/docker/logstash-event-tracker/conf.d:/usr/share/logstash/config.d
       - /www/docker/logstash-event-tracker/csv:/usr/share/logstash/csv
+      - /www/docker/logstash-event-tracker/data:/usr/share/logstash/data
     links:
       - elasticsearch
     depends_on:
@@ -79,7 +81,7 @@ services:
           memory: 14G
           cpus: "8.00"
   kibana:
-    image: docker.nju.edu.cn/library/kibana:8.8.1
+    image: kibana:9.3.3
     container_name: kibana-server
     ports:
       - "55007:5601"
