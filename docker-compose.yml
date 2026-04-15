@@ -22,9 +22,9 @@ services:
     #     hard: -1
     # mem_limit: 1g
     volumes:
-      - /data/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - /data/docker/elasticsearch/data:/usr/share/elasticsearch/data
-      - /data/docker/elasticsearch/logs:/usr/share/elasticsearch/logs
+      - /www/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /www/docker/elasticsearch/data:/usr/share/elasticsearch/data
+      - /www/docker/elasticsearch/logs:/usr/share/elasticsearch/logs
     deploy:
       resources:
         limits:
@@ -42,9 +42,9 @@ services:
       - XPACK_MONITORING_ENABLED=true
       - PATH_CONFIG=/usr/share/logstash/config.d
     volumes:
-      - /data/docker/logstash-api-analytics/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - /data/docker/logstash-api-analytics/conf.d:/usr/share/logstash/config.d
-      - /data/docker/logstash-api-analytics/csv:/usr/share/logstash/csv
+      - /www/docker/logstash-api-analytics/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - /www/docker/logstash-api-analytics/conf.d:/usr/share/logstash/config.d
+      - /www/docker/logstash-api-analytics/csv:/usr/share/logstash/csv
     links:
       - elasticsearch
     depends_on:
@@ -66,9 +66,9 @@ services:
       - XPACK_MONITORING_ENABLED=true
       - PATH_CONFIG=/usr/share/logstash/config.d
     volumes:
-      - /data/docker/logstash-event-tracker/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - /data/docker/logstash-event-tracker/conf.d:/usr/share/logstash/config.d
-      - /data/docker/logstash-event-tracker/csv:/usr/share/logstash/csv
+      - /www/docker/logstash-event-tracker/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - /www/docker/logstash-event-tracker/conf.d:/usr/share/logstash/config.d
+      - /www/docker/logstash-event-tracker/csv:/usr/share/logstash/csv
     links:
       - elasticsearch
     depends_on:
@@ -92,8 +92,8 @@ services:
       - XPACK_SECURITY_ENABLED=true
       - PATH_DATA=/usr/share/kibana/data
     volumes:
-      - /data/docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-      - /data/docker/kibana/data:/usr/share/kibana/data
+      - /www/docker/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - /www/docker/kibana/data:/usr/share/kibana/data
     links:
       - elasticsearch
     depends_on:
