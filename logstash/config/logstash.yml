@@ -1,4 +1,4 @@
-http.host: 0.0.0.0
+api.http.host: 0.0.0.0
 node.name: logstash-server
 path.config: /usr/share/logstash/config.d
 path.logs: /var/log/logstash
